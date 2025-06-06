@@ -40,9 +40,9 @@ func NewConsumer(cfg *Config, logger Logger, processor OrderProcessor) *Consumer
 
 func (c *Consumer) Init() error {
 	c.reader = kafka.NewReader(kafka.ReaderConfig{
-		Brokers: c.config.Brokers,
-		Topic:   c.config.Topic,
-		GroupID: "order-consumer-group",
+		Brokers:        c.config.Brokers,
+		Topic:          c.config.Topic,
+		CommitInterval: 0,
 	})
 	c.logger.Info("Kafka consumer initialized for topic: %s", c.config.Topic)
 	return nil
